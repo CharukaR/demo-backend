@@ -4,6 +4,8 @@ import orders, { Order } from '../models/order.model';
 // Retrieve all orders
 export const getAllOrders = (req: Request, res: Response) => {
   console.log('Fetching all orders');
+  // Log the total number of orders being fetched
+  console.log(`Total orders: ${orders.length}`);
   res.status(200).json(orders);
 };
 
@@ -27,6 +29,7 @@ export const createOrder = (req: Request, res: Response) => {
   const { item, quantity, status } = req.body;
   console.log('Creating a new order with data:', req.body);
 
+  // Validate the presence of necessary fields
   if (item && quantity && status) {
     const newOrder = {
       id: orders.length + 1,
@@ -56,6 +59,7 @@ export const updateOrder = (req: Request, res: Response) => {
     const orderToUpdate = orders[orderIndex];
     const { item, quantity, status } = req.body;
 
+    // Update only the fields that are provided in the request
     if (item) orderToUpdate.item = item;
     if (quantity) orderToUpdate.quantity = quantity;
     if (status) orderToUpdate.status = status;
