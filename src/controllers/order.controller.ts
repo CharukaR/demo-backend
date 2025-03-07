@@ -13,7 +13,7 @@ export const getOrderById = (req: Request, res: Response) => {
   console.log(`Fetching order with ID: ${orderId}`);
   const foundOrder = orders.find(order => order.id === orderId);
 
-  if (foundOrder && foundOrder.id && foundOrder.item && foundOrder.quantity) {
+  if (foundOrder) {
     console.log(`Order found: ${JSON.stringify(foundOrder)}`);
     res.status(200).json(foundOrder);
   } else {
